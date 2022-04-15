@@ -17,7 +17,12 @@
 
         <ul class="navbar-nav mr-auto">
             <li class="nav-item disabled">
-                <a class="nav-link" href="/database/student_view">Teacher<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="">Teacher<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <ul class="navbar-nav pr-5 ml-auto">
+            <li class="nav-item ">
+                <a class="nav-link text-danger" href="/login/logout/">LOGOUT</a>
             </li>
         </ul>
     </div>
@@ -68,7 +73,7 @@
         {% for r in req %}
         <tr class=" bg-warning">
             <th scope="row" >{{forloop.counter}}</th>
-            <td>{{r.name}}</td>
+            <td>{{r.classes.name}}</td>
             <td>{{r.student.user}}</td>
             <td>{{r.date}}</td>
             <td><a href="/database/teacher_view/classes/{{class_id}}/{{r.id}}" class="btn btn-primary">Accept</a></td>

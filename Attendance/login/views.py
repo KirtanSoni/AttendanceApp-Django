@@ -12,10 +12,9 @@ from django.core.exceptions import ObjectDoesNotExist
 
 
 def login(request):
-    courses = Course.objects.all()
     c = {}
     c.update(csrf(request))
-    return render(request, 'login.html', {'c': c, 'courses': courses})
+    return render(request, 'login.html', {'c': c})
 
     # messages.warning(request,"Invalid Username or Password")
 
@@ -26,9 +25,9 @@ def auth_view(request):
     user = auth.authenticate(request, username=username, password=password)
     if user is not None:
         auth.login(request, user)
-        return HttpResponseRedirect('/loginmodule/loggedin/')
+        return HttpResponseRedirect('/login/loggedin/')
     else:
-        return HttpResponseRedirect('/loginmodule/invalidlogin/')
+        return HttpResponseRedirect('/login/invalidlogin/')
 
 
 def signup(request):
@@ -41,18 +40,13 @@ def signup(request):
             profile = Professor.objects.create(user=user)
         else:
             profile = Student.objects.create(user=user)
-        courses = []
-        courses = request.POST.getlist('checks[]')
-        for c in courses:
-            cor=Course.objects.get(Course_name=c)
-            profile.Course.add(cor)
-        return HttpResponseRedirect('/loginmodule/login/')
+        return HttpResponseRedirect('/login/')
     except IntegrityError :
-        raise Http404("user already exists with this username")
+        return render(request, 'invalidlogin.html', {'some_flag':True})
    
 
 def loggedin(request):
-    return HttpResponseRedirect('/database/home/')
+    return HttpResponseRedirect('/database/home')
 
 
 def invalidlogin(request):
@@ -61,9 +55,8 @@ def invalidlogin(request):
 
 def logout(request):
     auth.logout(request)
-    return render(request, 'logout.html')
+    return HttpResponseRedirect('/login/')
 
 
-def Test(request):
-    return render(request, 'table_submission.html')
+
 # Create your views here.
