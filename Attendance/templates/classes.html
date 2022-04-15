@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+    p {
+        padding: 5px 7px 5px 9px;
+    }
+</style>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/database/home">Attendance</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link" href="/database/student_view">Teacher<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<body style="background-color: rgb(134, 163, 192);"></body>
+<h1 class="display-1 p-5 shadow">Your Classes: </h1>
+<a href="/database/teacher_view/classes/add" class="mx-5 btn btn-primary">Add Randomly generated class</a>
+<!--CARDS-->
+<div class="row mx-md-n5">
+    {% for cl in classes%}
+    <div class="card p-5 shadow m-5">
+        <h5 class="card-title">Class: {{cl.name}}</h5>
+        <p class="card-text">Professor: {{cl.professor.user}}</p>
+        <a href="/database/teacher_view/classes/{{cl.id}}" class="btn btn-primary">open</a>
+
+    </div>
+    {%endfor%}

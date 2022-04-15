@@ -1,0 +1,9 @@
+myenv
+
+Database/__pycache__
+Database/migrations
+
+login/__pycache__
+login/migrations
+
+Attendance/__pycache__

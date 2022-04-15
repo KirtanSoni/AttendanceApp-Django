@@ -1,0 +1,78 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+    p {
+        padding: 5px 7px 5px 9px;
+    }
+   
+</style>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/database/teacher_view">Attendance</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item disabled">
+                <a class="nav-link" href="/database/student_view">Teacher<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<body style="background-color: rgb(134, 163, 192);"></body>
+
+<h1 class="display-1">Confirmed attendance</h1>
+
+
+    
+
+
+<table class="table mt-5">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Class</th>
+            <th scope="col">Name</th>
+            <th scope="col">Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in attendance %}
+        <tr class=" bg-success">
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{a.classes.name}}</td>
+            <td>{{a.student.user}}</td>
+            <td>{{a.date}}</td>
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h1 class="display-1">Requests</h1>
+
+<table class="table mt-5">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Class</th>
+            <th scope="col">Name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Request</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for r in req %}
+        <tr class=" bg-warning">
+            <th scope="row" >{{forloop.counter}}</th>
+            <td>{{r.name}}</td>
+            <td>{{r.student.user}}</td>
+            <td>{{r.date}}</td>
+            <td><a href="/database/teacher_view/classes/{{class_id}}/{{r.id}}" class="btn btn-primary">Accept</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
